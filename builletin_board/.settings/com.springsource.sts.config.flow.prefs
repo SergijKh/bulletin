@@ -1,0 +1,4 @@
+//com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/integration\:/board/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<graph/>
+//com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/integration\:/board/src/test/java/test/spring/context/mvc-dispatcher-servlet.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<graph/>
+//com.springsource.sts.config.flow.coordinates\:http\://www.springframework.org/schema/integration\:/board/test/spring/context/mvc-dispatcher-servlet.xml=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<graph/>
+eclipse.preferences.version=1
