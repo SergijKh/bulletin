@@ -11,12 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import core.dao.model.advertisement.Advertisement;
 import core.dao.model.login.Login;
+import core.dao.service.login.ILogService;
 
 @Repository
 public class AdvertisementDaoImpl implements IAdvertisementDao {
 	@Autowired
 	private HibernateTemplate hibernateT;
-
+	@Autowired
+	ILogService service;
 	@Override
 	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public Advertisement getAdvertisementByID(int l) {
@@ -66,13 +68,13 @@ public class AdvertisementDaoImpl implements IAdvertisementDao {
 
 	@Override
 	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	public List<Advertisement> getAdvertisementByIDLogin(int idLogin) {
-		if (idLogin <= 0) {
+	public List<Advertisement> getAdvertisementByIDLogin(Login login) {
+		if (login==null) {
 			throw new IllegalArgumentException();
 		}
 		@SuppressWarnings("unchecked")
 		List<Advertisement> advertisList = (List<Advertisement>) hibernateT
-				.find("from Advertisement p where p.idLogin= ?", idLogin);
+				.find("from Advertisement p where p.login= ?", login);
 
 		return advertisList;
 	}
@@ -101,7 +103,41 @@ public class AdvertisementDaoImpl implements IAdvertisementDao {
 		 hibernateT.delete(advert);
 	}
 
+	@Override
+	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,String rubric) {
+		if (login ==null  && rubric==null && rubric.equals("") ) {
+			throw new IllegalArgumentException();
+		}
+		@SuppressWarnings("unchecked")
+		List<Advertisement> advertisList = (List<Advertisement>) hibernateT
+				.find("from Advertisement p where p.login= ? and p.rubric= ? ",login,rubric);
 
-	
+		return advertisList;
+	}
+	@Override
+	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public List<Advertisement> getAdvertisementByNameUser(String nameUser) {
+		if ( nameUser==null && nameUser.equals("") ) {
+			throw new IllegalArgumentException();
+		}
+		@SuppressWarnings("unchecked")
+		List<Advertisement> advertisList = (List<Advertisement>) hibernateT
+				.find("from Advertisement p where p.login.nameUser = ?)", nameUser);
+
+		return advertisList;
+	}
+	@Override
+	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser,String rubric) {
+		if ( nameUser==null && nameUser.equals("")&& rubric == null && rubric.equals("") ) {
+			throw new IllegalArgumentException();
+		}
+		@SuppressWarnings("unchecked")
+		List<Advertisement> advertisList = (List<Advertisement>) hibernateT
+				.find("from Advertisement p where p.rubric=? and p.idLogin=(select j.idLogin from Login j where j.nameUser = ?)",rubric, nameUser);
+
+		return advertisList;
+	}
 
 }

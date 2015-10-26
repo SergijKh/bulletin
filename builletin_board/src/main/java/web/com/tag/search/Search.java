@@ -17,19 +17,19 @@ public class Search extends TagSupport{
 
 	private static final long serialVersionUID = 1L;
     private static final String[] ARRAY_RUBRIC = {"все","продажа","покупка","аренда","услуги","знакомства"};
-	private Properties config;
-	private InputStream inputStream;
+	//private Properties config;
+	//private InputStream inputStream;
 	public  Search(){
-		   this.config = new Properties();
-		   this.inputStream = getClass().getClassLoader()
-								.getResourceAsStream("redirect.properties");
+		   //this.config = new Properties();
+		 //  this.inputStream = getClass().getClassLoader()
+								//.getResourceAsStream("redirect.properties");
 	}
 	@Override
 	public int doStartTag() throws JspException {
 
 		try {
 			JspWriter out = pageContext.getOut();
-			config.load(inputStream);
+			//config.load(inputStream);
 			out.print(" <div id='serchAds'> <form id ='formx' action='javascript:void(null);' onsubmit='showValues()' method='POST'><table id='tabl'>"
 				
 	                   +"<tr>  <th colspan='2'> поиск</th> </tr><tr>"

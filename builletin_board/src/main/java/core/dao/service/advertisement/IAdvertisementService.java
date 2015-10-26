@@ -3,6 +3,7 @@ package core.dao.service.advertisement;
 import java.util.List;
 
 import core.dao.model.advertisement.Advertisement;
+import core.dao.model.login.Login;
 
 public interface IAdvertisementService {
 	/**
@@ -39,7 +40,7 @@ public interface IAdvertisementService {
 	 * @param id author
 	 * @return Advertisement by id author
 	 */
-	public List<Advertisement>  getAdvertisementByIDLogin(int idlogin);
+	public List<Advertisement>  getAdvertisementByIDLogin(Login login);
     
 	
 	/**
@@ -52,4 +53,25 @@ public interface IAdvertisementService {
 	 * @param id
 	 */
 	public void delateAdvertisementByID(int id);
+	 /* 
+	 * @param login login user
+	 * @param rubric name  search rubric 
+	 * @return
+	 */
+	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,String rubric);
+	/**
+	 *  search list Advertisement  by name User name
+	 * @param nameUsery name user 
+	 * @return  list advertisement
+	 */
+	
+	public List<Advertisement> getAdvertisementByNameUser(String nameUser);
+	/**
+	 *  search list Advertisement  by name User name and  rubric
+	 * @param nameUsery name user 
+	 * @param  rubric  name rubric advertisement
+	 * @return  list advertisement
+	 */
+	
+	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser, String rubric);
 }

@@ -29,8 +29,8 @@ public class ListAdvertisement extends TagSupport {
 	private static final Logger logger1 = Logger.getLogger(SignUp.class);
 
 	private static final long serialVersionUID = 1L;
-	private Properties config;
-	private InputStream inputStream;
+	//private Properties config;
+	//private InputStream inputStream;
 	/**
 	 * format date
 	 */
@@ -42,9 +42,9 @@ public class ListAdvertisement extends TagSupport {
 
 	public ListAdvertisement() {
 
-		this.config = new Properties();
-		this.inputStream = getClass().getClassLoader().getResourceAsStream(
-				"redirect.properties");
+		//this.config = new Properties();
+		//this.inputStream = getClass().getClassLoader().getResourceAsStream(
+			//	"redirect.properties");
 		// "+config.getProperty("search")+"
 		 sdf = new SimpleDateFormat("MMM dd,yyyy ");
 		
@@ -58,7 +58,7 @@ public class ListAdvertisement extends TagSupport {
 		Login login = (Login) session.getAttribute("login");
 		try {
 			JspWriter out = pageContext.getOut();
-			config.load(inputStream);
+			//config.load(inputStream);
 			for (int i = 0; i < listAdvert.size(); i++) {
 				out.print("<div class ='name_content id"+listAdvert.get(i).getIdAdvertisement()+"'>"
 				 + "<table class='tabl'><tr><td width='90%'>"
@@ -66,7 +66,8 @@ public class ListAdvertisement extends TagSupport {
 						+ " </td> ");
 				 if (login != null){
 				if (login.getIdLogin() ==  listAdvert.get(i).getLogin().getIdLogin()) {
-					out.print("<td> <button class='deleteAdvertism' type='button' value= "+listAdvert.get(i).getIdAdvertisement() +">"+listAdvert.get(i).getIdAdvertisement()+"</button></td> </tr>");
+					out.print("<td> <button class='deleteAdvertism' type='button' value= "+listAdvert.get(i).getIdAdvertisement() +">удалить</button> "
+							+ "</td> </tr>");
 				} else{
 					out.print("</tr>");  
 				}}
@@ -76,7 +77,7 @@ public class ListAdvertisement extends TagSupport {
 				out.print("<tr><td>"+ listAdvert.get(i).getTitle()+" </td> </tr>");
 				out.print("<tr><td>"+ listAdvert.get(i).getText()+" </td> </tr>");
 				 
-				out.print("</table></form> </div>");
+				out.print("</table> </div>");
 
 			}
 			

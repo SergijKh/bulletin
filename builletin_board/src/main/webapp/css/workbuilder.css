@@ -120,6 +120,7 @@ a {
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 10px;
 }
+
 .name_content.tabl{
 	width: 100%;
 	height: aut;
@@ -190,7 +191,7 @@ a {
 	height: 60%;
 	
 }
-#search #tabl{
+/*#search*/ #tabl{
 	   
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   font-size: 14px;
@@ -200,14 +201,14 @@ a {
   border-collapse: collapse;
   text-align: left;
 }
-#search #tabl  th {
+/*#search*/ #tabl  th {
    font-size: 20px;
   font-weight: normal;
   border-bottom: 2px solid #6678b1;
   padding: 10px 8px;
   text-align:center;
 }
-#search #tabl td {
+/*#search */#tabl td {
   color: #669;
   padding: 9px 8px;
   transition: .3s linear;
@@ -301,4 +302,35 @@ a {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+}
+.info {
+        text-align: left;
+        padding: 5px;
+        font-size: 11px;
+        color: #fff;
+        position: absolute;
+        display: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: -1px 1px 2px #a9a9a9;
+        -moz-box-shadow: -1px 1px 2px #a9a9a9;
+        box-shadow: -1px 1px 2px #a9a9a9;
+}
+
+.error {
+        background: #f60000;
+        border: 3px solid #d50000;
+}
+.correct {
+        background: #56d800;
+        border: 3px solid #008000;
+}
+.wrong {
+        font-weight: bold;
+        color: #e90000;
+}
+.normal {
+        font-weight: normal;
+        color: #222;
 }

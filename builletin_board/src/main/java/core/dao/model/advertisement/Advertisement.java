@@ -97,18 +97,59 @@ public class Advertisement implements Serializable{
 	 * @param rubric rubric advertisement
 	 * @param title  title advertisement
 	 * @param text text advertisement
+	 */ 
+	public Advertisement( String rubric, String title,
+			String text) {
+	
+		this.rubric = rubric;
+		this.title = title;
+		this.text = text;	
+	}
+	/**
+	 * 
+	 * @param rubric rubric advertisement
+	 * @param title  title advertisement
+	 * @param text text advertisement
 	 * @param idLogin id login
 	 */ 
 	public Advertisement( String rubric, String title,
-			String text, Long modifiedDate) {
+			String text, Login idLogin) {
 	
 		this.rubric = rubric;
 		this.title = title;
 		this.text = text;
-		this.modifiedDate = modifiedDate;
-		
-		
+		this.login = idLogin;
 	}
+	
+	/**
+	 * @param idAdvertisement
+	 * @param rubric
+	 * @param title
+	 * @param text
+	 */
+	public Advertisement(int idAdvertisement, String rubric, String title,
+			String text) {
+		this.idAdvertisement = idAdvertisement;
+		this.rubric = rubric;
+		this.title = title;
+		this.text = text;
+	}
+	/**
+	 * @param rubric
+	 * @param title
+	 * @param text
+	 * @param modifiedDate
+	 */
+	public Advertisement( String rubric, String title,
+			String text, long date) {
+	
+		this.rubric = rubric;
+		this.title = title;
+		this.text = text;
+		this.modifiedDate = date;
+	}
+
+
 	/**
 	 * @return the login
 	 */

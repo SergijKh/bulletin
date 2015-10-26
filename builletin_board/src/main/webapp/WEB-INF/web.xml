@@ -17,6 +17,10 @@
       <taglib-uri>list_advertis</taglib-uri>
       <taglib-location>/WEB-INF/tld/listAdvertisement.tld</taglib-location>
     </taglib>
+    <taglib>
+      <taglib-uri>list_redact</taglib-uri>
+      <taglib-location>/WEB-INF/tld/listRedact.tld</taglib-location>
+    </taglib>
   </jsp-config>
   <filter>
     <filter-name>LocalFilter</filter-name>

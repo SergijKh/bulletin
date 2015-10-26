@@ -26,7 +26,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <c:set var="nameContent" scope="session" value="ListAds" />
+ <c:set var="nameContent" scope="session" value="/listAds" />
 	<div id='main'>
 		<div id='header'>
 			<div id='head'>
@@ -38,7 +38,7 @@
 				<div class="top_menu">
 					<ul>
 						<li><a href="./listAds">список объявлений </a></li>
-						<li><a href="./postservice">редактор объявлений</a></li>
+						<li><a href="./editor">редактор объявлений</a></li>
 						
 					</ul>
 				</div>
@@ -46,11 +46,11 @@
 			</div>
 			<div id='body_full'>
 				<div id='body_center'>
-                   <c:if test="${listAdver != null}">
+                   <c:if test="${sessionScope.listAdver != null}">
                         <listAdver:LAdvert listAdvert = "${listAdver}" />           
 						        			
 					</c:if>
-					<c:if test="${empty listAdver}">
+					<c:if test="${empty sessionScope.listAdver}">
 					<p> нет  объявлений</p>
                                  	        			
 					</c:if>

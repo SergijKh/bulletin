@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import core.dao.dao.advertisement.IAdvertisementDao;
 import core.dao.dao.login.ILogDao;
 import core.dao.model.advertisement.Advertisement;
+import core.dao.model.login.Login;
 @Service
 public class AdvertisementService implements IAdvertisementService {
 	@Autowired
@@ -40,8 +41,8 @@ public class AdvertisementService implements IAdvertisementService {
 	}
 
 	@Override
-	public List<Advertisement> getAdvertisementByIDLogin(int idlogin) {
-		return daoAdvertis.getAdvertisementByIDLogin(idlogin);
+	public List<Advertisement> getAdvertisementByIDLogin(Login login) {
+		return daoAdvertis.getAdvertisementByIDLogin( login);
 	}
 
 	@Override
@@ -52,6 +53,26 @@ public class AdvertisementService implements IAdvertisementService {
 	@Override
 	public void delateAdvertisementByID(int id) {
 		daoAdvertis.delateAdvertisementByID(id);
+	}
+
+	@Override
+	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,
+			String rubric) {
+		
+		return daoAdvertis.getAdvertisementByIDLoginRubric(login, rubric);
+	}
+
+	@Override
+	public List<Advertisement> getAdvertisementByNameUser(String nameUser) {
+		
+		return daoAdvertis.getAdvertisementByNameUser(nameUser);
+	}
+
+	@Override
+	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser,
+			String rubric) {
+
+		return daoAdvertis.getAdvertisementByNameUserRubic(nameUser,rubric);
 	}
 
 	

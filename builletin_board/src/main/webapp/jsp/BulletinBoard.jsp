@@ -23,7 +23,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <c:set var="nameContent" scope="session" value="BulletinBoard" />
+ <c:set var="nameContent" scope="session" value="jsp/BulletinBoard.jsp" />
 	<div id='main'>
 		<div id='header'>
 			<div id='head'>
@@ -36,7 +36,7 @@
 					<ul>
 					   <c:if test="${sessionScope.login != null}" >
 						<li><a href="./listAds">список объявлений </a></li>
-						<li><a href="./postservice">редактор объявлений</a></li>
+						<li><a href="./editor">редактор объявлений</a></li>
 						</c:if>
 					</ul>
 				</div>
