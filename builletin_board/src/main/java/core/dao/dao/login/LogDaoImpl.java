@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import core.dao.dao.login.ILogDao;
 import core.dao.model.login.Login;
 
-
 /**
  * 
  * @author Sergey class LogDaoImpl access data in login
@@ -24,7 +23,7 @@ public class LogDaoImpl implements ILogDao {
 	private HibernateTemplate hibernateT;
 
 	@Override
-	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Login getLoginByIDLogin(int l) {
 		if (l <= 0)
 			throw new IllegalArgumentException();
@@ -34,15 +33,15 @@ public class LogDaoImpl implements ILogDao {
 	}
 
 	@Override
-	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	@SuppressWarnings("unchecked")
 	public List<Login> getAllLogin() {
-		List<Login> listLogin = (List<Login>)hibernateT.find("from Login");
+		List<Login> listLogin = (List<Login>) hibernateT.find("from Login");
 		return listLogin;
 	}
 
 	@Override
-	 @Transactional(propagation=Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public int addLogin(Login login) {
 		if (login == null)
 			throw new IllegalArgumentException();
@@ -51,7 +50,7 @@ public class LogDaoImpl implements ILogDao {
 	}
 
 	@Override
-	 @Transactional(propagation=Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void delateLogin(Login login) {
 		if (login == null)
 			throw new IllegalArgumentException();
@@ -60,7 +59,7 @@ public class LogDaoImpl implements ILogDao {
 	}
 
 	@Override
-	 @Transactional(propagation=Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Login updateLogin(Login login) {
 		if (login == null)
 			throw new IllegalArgumentException();
@@ -76,12 +75,13 @@ public class LogDaoImpl implements ILogDao {
 
 	/**
 	 * @param em
-	 * the new  HibernateTemlate to set
+	 *            the new HibernateTemlate to set
 	 */
 	public void setHibernateT(HibernateTemplate hibernateT) {
 		this.hibernateT = hibernateT;
 	}
-	 @Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	@Override
 	public Login getByNameLogin(String name) {
 		@SuppressWarnings("unchecked")
@@ -96,17 +96,17 @@ public class LogDaoImpl implements ILogDao {
 		return login;
 	}
 
-	 @SuppressWarnings("unchecked")
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-		@Override
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	@Override
 	public List<Login> getByNameUser(String name) {
-		
-			if(name.equals("")||name ==null){
-				throw new IllegalArgumentException();
-			}
-		 List<Login> logins = (List<Login>) hibernateT.find(
-					"from Login p where p.nameUser = ?", name);
-			
-			return logins;
+
+		if (name.equals("") || name == null) {
+			throw new IllegalArgumentException();
+		}
+		List<Login> logins = (List<Login>) hibernateT.find(
+				"from Login p where p.nameUser = ?", name);
+
+		return logins;
 	}
 }

@@ -12,12 +12,15 @@ import core.dao.service.advertisement.IAdvertisementService;
 public interface ISearching {
 
 	/**
-	 * search advertisement by criteria  
-	 * @param serch RequestParamSerch
+	 * search advertisement by criteria
+	 * 
+	 * @param serch
+	 *            RequestParamSerch
 	 * @see RequestParamSerch
 	 * @return
 	 */
-	public List<Advertisement> serchCreteriaNameUserRubric(HttpServletRequest request,
-			RequestParamSerch serch,IAdvertisementService service);
+	public List<Advertisement> serchCreteriaNameUserRubric(
+			HttpServletRequest request, RequestParamSerch serch,
+			IAdvertisementService service);
 
 }

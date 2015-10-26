@@ -5,12 +5,13 @@ import org.springframework.stereotype.Component;
 //class model request parameters 
 @Component
 public class RequestParamSerch {
-	 // name rubrica advertisement
-	private String select_rubric ;
-	//name user  which write advertisement
+	// name rubrica advertisement
+	private String select_rubric;
+	// name user which write advertisement
 	private String nameUser;
-	 // all advertisement  single user (result checkbooks)
+	// all advertisement single user (result checkbooks)
 	private String myAds;
+
 	/**
 	 * 
 	 */
@@ -18,6 +19,7 @@ public class RequestParamSerch {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * @param select_rubric
 	 * @param nameUser
@@ -28,43 +30,55 @@ public class RequestParamSerch {
 		this.nameUser = nameUser;
 		this.myAds = myAds;
 	}
+
 	/**
 	 * @return the select_rubric
 	 */
 	public String getSelect_rubric() {
 		return select_rubric;
 	}
+
 	/**
-	 * @param select_rubric the select_rubric to set
+	 * @param select_rubric
+	 *            the select_rubric to set
 	 */
 	public void setSelect_rubric(String select_rubric) {
 		this.select_rubric = select_rubric;
 	}
+
 	/**
 	 * @return the nameUser
 	 */
 	public String getNameUser() {
 		return nameUser;
 	}
+
 	/**
-	 * @param nameUser the nameUser to set
+	 * @param nameUser
+	 *            the nameUser to set
 	 */
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
+
 	/**
 	 * @return the myAds
 	 */
 	public String getMyAds() {
 		return myAds;
 	}
+
 	/**
-	 * @param myAds the myAds to set
+	 * @param myAds
+	 *            the myAds to set
 	 */
 	public void setMyAds(String myAds) {
 		this.myAds = myAds;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -72,7 +86,10 @@ public class RequestParamSerch {
 		return "RequestParamSerch [select_rubric=" + select_rubric
 				+ ", nameUser=" + nameUser + ", myAds=" + myAds + "]";
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -86,7 +103,10 @@ public class RequestParamSerch {
 				+ ((select_rubric == null) ? 0 : select_rubric.hashCode());
 		return result;
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -115,7 +135,5 @@ public class RequestParamSerch {
 			return false;
 		return true;
 	}
-	
-	
 
 }

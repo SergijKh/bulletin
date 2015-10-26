@@ -11,7 +11,6 @@ import java.util.Set;
 import org.junit.After;
 import org.junit.Before;
 
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,11 +32,15 @@ public class AdvertismentTest {
 	AdvertisementService impl;
 	@Autowired
 	LogService logServic;
-	// list logins
+	
+	//list advertisement for test
 	private ArrayList<Advertisement> testAdvertisementList;
 	private ArrayList<Login> listLogin;
+	// copy list advertisement which are located in base
 	private ArrayList<Advertisement> baseAdvertisement;
-
+	//array rubric 
+	private static  final String[] rubricArray = { "продажа", "покупка", "аренда", "слуги",
+	"знакомства" };
 	@Before
 	public void init() {
 		Login login = null;
@@ -58,14 +61,14 @@ public class AdvertismentTest {
 		long date = new Date().getTime();
 		Advertisement advertis = null;
 		for (int i = 0; i < 30; i++) {
-			rubric = rubricArray[((int) (Math.random() * ((rubricArray.length)-1)))];
-			title = "pasword" + i + i;
+			rubric = rubricArray[((int) (Math.random() * ((rubricArray.length) - 1)))];
+			title = "title" + i + i;
 			for (int j = 0; j < i; j++) {
-				text += "text" + j + "email.com  ";
+				text += "text" + j + "text  ";
 			}
 			advertis = new Advertisement(rubric, title, text, date);
 			advertis.setLogin(listLogin.get(((int) (Math.random() * (listLogin
-					.size()-1)))));
+					.size() - 1)))));
 			testAdvertisementList.add(advertis);
 			text = "";
 		}
@@ -75,18 +78,18 @@ public class AdvertismentTest {
 	@After
 	public void destroy() {
 		testAdvertisementList = null;
-		/*if (baseAdvertisement.size() > 0) {
+		if (baseAdvertisement.size() > 0) {
 			for (int m = 0; m < baseAdvertisement.size(); m++) {
 				impl.delateAdvertisement(baseAdvertisement.get(m));
 			}
 		}
-
 		for (int i = 0; i < listLogin.size(); i++) {
 			logServic.delateLogin(listLogin.get(i));
-		}*/
+		}
+		baseAdvertisement.clear();
 	}
 
-	 @Ignore
+	@Ignore
 	@Test
 	public void testAddAdvertisement() {
 
@@ -113,7 +116,7 @@ public class AdvertismentTest {
 
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testAddListAdvertisement() {
 
@@ -146,11 +149,9 @@ public class AdvertismentTest {
 
 	}
 
-   @Ignore
+	@Ignore
 	@Test
 	public void testupdateAdvertisement() {
-
-		int id = impl.addAdvertisement(testAdvertisementList.get(1));
 		Advertisement advert = testAdvertisementList.get(1);
 		advert.setRubric("update");
 		advert.setTitle("update");
@@ -160,8 +161,10 @@ public class AdvertismentTest {
 		assertEquals(advert, update);
 		assertNotNull("list is null", update);
 	}
-  // @Ignore
+
+	@Ignore
 	@Test
+	// search by rubric
 	public void testGetAdvertisementByRubric() {
 		String buy = "покупка";
 		for (int i = 0; i < testAdvertisementList.size(); i++) {
@@ -173,9 +176,10 @@ public class AdvertismentTest {
 		for (int i = 0; i < listRubric.size(); i++) {
 			assertEquals(listRubric.get(i).getRubric(), buy);
 		}
-
+		
 	}
-    @Ignore
+
+	 @Ignore
 	@Test
 	public void testGetAdvertisementByNameUser() {
 		String nameUser = "nameUser" + 1;
@@ -188,16 +192,62 @@ public class AdvertismentTest {
 		assertNotNull("list is null", logins);
 		for (int i = 0; i < logins.size(); i++) {
 			@SuppressWarnings("unchecked")
-			Set<Advertisement> setAdvert = (Set<Advertisement>) logins
-					.get(i).getAdvertis();
+			Set<Advertisement> setAdvert = (Set<Advertisement>) logins.get(i)
+					.getAdvertis();
 			assertNotNull("list is null", setAdvert);
 			Iterator<Advertisement> itr = setAdvert.iterator();
-	      	while ( itr.hasNext()) {
-				assertEquals(itr.next().getLogin().getIdLogin(), logins
-						.get(i).getIdLogin());
-
+			while (itr.hasNext()) {
+				assertEquals(itr.next().getLogin().getIdLogin(), logins.get(i)
+						.getIdLogin());
+				
 			}
 		}
 
 	}
+
+	@Ignore
+	@Test
+	// select advertisement by name user
+	public void getAdvertisementByNameUser() {
+		String nameUser = "nameUser" + 1;
+		for (int i = 0; i < testAdvertisementList.size(); i++) {
+			if (testAdvertisementList.get(i).getLogin().getNameUser().equals(nameUser)){
+			impl.addAdvertisement(testAdvertisementList.get(i));
+			baseAdvertisement.add(testAdvertisementList.get(i));
+			}
+		}
+	         
+	     List<Advertisement> listAdvert = impl.getAdvertisementByNameUser(nameUser);
+	      assertNotNull("list not null",listAdvert);
+	      assertEquals(listAdvert.size(),baseAdvertisement.size());
+           if (listAdvert != null && listAdvert.size() > 0 )
+               for (int j = 0; j < listAdvert.size(); j++){
+				assertEquals(listAdvert.get(j).getLogin().getNameUser(),baseAdvertisement.get(j).getLogin().getNameUser());
+				assertEquals(listAdvert.get(j),baseAdvertisement.get(j));
+               }
+			}
+
+	@Test
+	// select advertisement by name user and rubric
+	public void getAdvertisementByNameUserRubic() {
+		String nameUser = "nameUser" + 1;
+		String rubric = rubricArray[0];
+		for (int i = 0; i < testAdvertisementList.size(); i++) {
+			if (testAdvertisementList.get(i).getLogin().getNameUser().equals(nameUser)&&
+					testAdvertisementList.get(i).getRubric().equals(rubric)){
+			impl.addAdvertisement(testAdvertisementList.get(i));
+			baseAdvertisement.add(testAdvertisementList.get(i));
+			}
+		}
+	         
+	     List<Advertisement> listAdvert = impl.getAdvertisementByNameUserRubic(nameUser, rubric);
+	      assertNotNull("list not null",listAdvert);
+	      assertEquals(listAdvert.size(),baseAdvertisement.size());
+           if (listAdvert != null && listAdvert.size() > 0 )
+               for (int j = 0; j < listAdvert.size(); j++){
+				assertEquals(listAdvert.get(j).getLogin().getNameUser(),baseAdvertisement.get(j).getLogin().getNameUser());
+				assertEquals(listAdvert.get(j).getRubric(),baseAdvertisement.get(j).getRubric());
+				assertEquals(listAdvert.get(j),baseAdvertisement.get(j));
+               }
+			}
 }

@@ -12,15 +12,15 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class LocalFilter
  */
-@WebFilter( servletNames = "LocalFilter", urlPatterns = "/*")
+@WebFilter(servletNames = "LocalFilter", urlPatterns = "/*")
 public class LocalFilter implements Filter {
 
 	/**
-    * Default constructor 
-    */
-   public LocalFilter() {
-       
-   }
+	 * Default constructor
+	 */
+	public LocalFilter() {
+
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -32,7 +32,8 @@ public class LocalFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		chain.doFilter(request, response);

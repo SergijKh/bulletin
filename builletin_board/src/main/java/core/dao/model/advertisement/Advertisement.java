@@ -1,43 +1,26 @@
 package core.dao.model.advertisement;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import core.dao.model.login.Login;
-
-
 
 /**
  * class describe model advertisement
+ * 
  * @author Sergey
  *
  */
 @Entity
 @Table
-
-public class Advertisement implements Serializable{
+public class Advertisement implements Serializable {
 	/**
 	 * 
 	 */
@@ -50,14 +33,14 @@ public class Advertisement implements Serializable{
 	@Column(name = "ID_ADVERTISEMENT", nullable = false)
 	private int idAdvertisement;
 	/**
-	 * date create  and update advertisement
+	 * date create and update advertisement
 	 */
-	
+
 	@Column(name = "PUBLICATION_DATE")
 	private Long modifiedDate;
-    /**
-     * rubric advertisement
-     */
+	/**
+	 * rubric advertisement
+	 */
 	@Column(name = "RUBRIC", nullable = false)
 	private String rubric;
 	/**
@@ -70,57 +53,61 @@ public class Advertisement implements Serializable{
 	 */
 	@Column(name = "TEXT")
 	private String text;
-	
-	
+
 	/**
-	 * Login  
+	 * Login
 	 */
 	// @XmlTransient
-	 @JsonManagedReference ("login")
+	@JsonManagedReference("login")
 	// @JsonBackReference("login")
-	 @ManyToOne //(fetch = FetchType.LAZY)
-	 @JoinColumn(name = "ID_LOGIN", nullable = false)
-	 private Login login;
-	
-	
+	@ManyToOne
+	// (fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_LOGIN", nullable = false)
+	private Login login;
 
 	/**
 	 * empty constructor
 	 */
 	public Advertisement() {
 		super();
-	
+
 	}
-	
+
 	/**
 	 * 
-	 * @param rubric rubric advertisement
-	 * @param title  title advertisement
-	 * @param text text advertisement
-	 */ 
-	public Advertisement( String rubric, String title,
-			String text) {
-	
+	 * @param rubric
+	 *            rubric advertisement
+	 * @param title
+	 *            title advertisement
+	 * @param text
+	 *            text advertisement
+	 */
+	public Advertisement(String rubric, String title, String text) {
+
 		this.rubric = rubric;
 		this.title = title;
-		this.text = text;	
+		this.text = text;
 	}
+
 	/**
 	 * 
-	 * @param rubric rubric advertisement
-	 * @param title  title advertisement
-	 * @param text text advertisement
-	 * @param idLogin id login
-	 */ 
-	public Advertisement( String rubric, String title,
-			String text, Login idLogin) {
-	
+	 * @param rubric
+	 *            rubric advertisement
+	 * @param title
+	 *            title advertisement
+	 * @param text
+	 *            text advertisement
+	 * @param idLogin
+	 *            id login
+	 */
+	public Advertisement(String rubric, String title, String text, Login idLogin) {
+
 		this.rubric = rubric;
 		this.title = title;
 		this.text = text;
 		this.login = idLogin;
 	}
-	
+
 	/**
 	 * @param idAdvertisement
 	 * @param rubric
@@ -134,32 +121,32 @@ public class Advertisement implements Serializable{
 		this.title = title;
 		this.text = text;
 	}
+
 	/**
 	 * @param rubric
 	 * @param title
 	 * @param text
 	 * @param modifiedDate
 	 */
-	public Advertisement( String rubric, String title,
-			String text, long date) {
-	
+	public Advertisement(String rubric, String title, String text, long date) {
+
 		this.rubric = rubric;
 		this.title = title;
 		this.text = text;
 		this.modifiedDate = date;
 	}
 
-
 	/**
 	 * @return the login
 	 */
-	
+
 	public Login getLogin() {
 		return login;
 	}
 
 	/**
-	 * @param login the login to set
+	 * @param login
+	 *            the login to set
 	 */
 	public void setLogin(Login login) {
 		this.login = login;
@@ -171,62 +158,78 @@ public class Advertisement implements Serializable{
 	public int getIdAdvertisement() {
 		return idAdvertisement;
 	}
+
 	/**
-	 * @param idAdvertisement the idAdvertisement to set
+	 * @param idAdvertisement
+	 *            the idAdvertisement to set
 	 */
 	public void setIdAdvertisement(int idAdvertisement) {
 		this.idAdvertisement = idAdvertisement;
 	}
+
 	/**
 	 * @return the modifiedDate
 	 */
-	public Long  getModifiedDate() {
+	public Long getModifiedDate() {
 		return modifiedDate;
 	}
+
 	/**
-	 * @param modifiedDate the modifiedDate to set
+	 * @param modifiedDate
+	 *            the modifiedDate to set
 	 */
 	public void setModifiedDate(long modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
 	/**
 	 * @return the rubric
 	 */
 	public String getRubric() {
 		return rubric;
 	}
+
 	/**
-	 * @param rubric the rubric to set
+	 * @param rubric
+	 *            the rubric to set
 	 */
 	public void setRubric(String rubric) {
 		this.rubric = rubric;
 	}
+
 	/**
 	 * @return the title
 	 */
 	public String getTitle() {
 		return title;
 	}
+
 	/**
-	 * @param title the title to set
+	 * @param title
+	 *            the title to set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	/**
 	 * @return the text
 	 */
 	public String getText() {
 		return text;
 	}
+
 	/**
-	 * @param text the text to set
+	 * @param text
+	 *            the text to set
 	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -242,7 +245,9 @@ public class Advertisement implements Serializable{
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -278,10 +283,5 @@ public class Advertisement implements Serializable{
 			return false;
 		return true;
 	}
-	
 
-	
-
-	
-	
 }

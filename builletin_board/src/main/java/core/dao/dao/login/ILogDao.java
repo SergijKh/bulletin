@@ -2,15 +2,12 @@ package core.dao.dao.login;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import core.dao.model.login.Login;
 
-
 /**
  * 
- * @author Sergey 
- * interface access data login
+ * @author Sergey interface access data login
  */
 
 public interface ILogDao {
@@ -29,7 +26,7 @@ public interface ILogDao {
 
 	/**
 	 * new login add in database
-
+	 * 
 	 * @return
 	 */
 	public int addLogin(Login login);
@@ -48,13 +45,14 @@ public interface ILogDao {
 	public Login updateLogin(Login login);
 
 	/**
-	 *  
-	 * @return Login by name  login
+	 * 
+	 * @return Login by name login
 	 */
 	public Login getByNameLogin(String name);
+
 	/**
-	 *  
-	 * @return list Login by name user  
+	 * 
+	 * @return list Login by name user
 	 */
 	public List<Login> getByNameUser(String nameUser);
 

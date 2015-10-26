@@ -19,7 +19,7 @@ import core.dao.model.login.Login;
  * Initialized filter check if have cookie and create session login(name,
  * password)
  */
-@WebFilter(servletNames = "InitFilter", urlPatterns ="/*")
+@WebFilter(servletNames = "InitFilter", urlPatterns = "/*")
 public class InitFilter implements Filter {
 	private static final Logger logger = Logger.getLogger(InitFilter.class);
 
@@ -44,12 +44,13 @@ public class InitFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		Cookie[] cook = (((HttpServletRequest) request).getCookies());
 		HttpSession session = (((HttpServletRequest) request).getSession(true));
-		 researchCookie(cook, session);
+		researchCookie(cook, session);
 		chain.doFilter(request, response);
 	}
 
 	/**
-	 * method  research cookie 
+	 * method research cookie
+	 * 
 	 * @param cook
 	 * @param session
 	 * @param loginUser
@@ -74,19 +75,18 @@ public class InitFilter implements Filter {
 				if (cook[i].getName().equals("email")) {
 					email = cook[i].getValue();
 				}
-				
+
 			}
-			if ((!(login.equals(""))) && (!(password.equals("")))&&(!((idLogin.equals(""))))) {
+			if ((!(login.equals(""))) && (!(password.equals("")))
+					&& (!((idLogin.equals(""))))) {
 				int id = Integer.parseInt(idLogin);
-				loginUser = new Login(id,login, password,email);
+				loginUser = new Login(id, login, password, email);
 				session.setAttribute("login", loginUser);
 				logger.info("filterLogin");
 			}
-			
+
 		}
 	}
-
-
 
 	/**
 	 * @see Filter#init(FilterConfig)

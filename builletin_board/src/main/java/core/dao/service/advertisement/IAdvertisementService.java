@@ -8,7 +8,7 @@ import core.dao.model.login.Login;
 public interface IAdvertisementService {
 	/**
 	 * 
-	 * @return advertisement by id 
+	 * @return advertisement by id
 	 */
 	public Advertisement getAdvertisementByID(int l);
 
@@ -20,12 +20,14 @@ public interface IAdvertisementService {
 
 	/**
 	 * new advertisement add in database
+	 * 
 	 * @return id advertisement
 	 */
 	public int addAdvertisement(Advertisement advert);
 
 	/**
 	 * delete Advertisement in base
+	 * 
 	 * @param Advertisement
 	 * 
 	 */
@@ -37,41 +39,56 @@ public interface IAdvertisementService {
 	public Advertisement updateAdvertisement(Advertisement advertis);
 
 	/**
-	 * @param id author
+	 * @param id
+	 *            author
 	 * @return Advertisement by id author
 	 */
-	public List<Advertisement>  getAdvertisementByIDLogin(Login login);
-    
-	
+	public List<Advertisement> getAdvertisementByIDLogin(Login login);
+
 	/**
-	 * @param  name rubric 
+	 * @param name
+	 *            rubric
 	 * @return Advertisement by name rubric
 	 */
-	public List<Advertisement>  getAdvertisementByRubric(String rubric);
+	public List<Advertisement> getAdvertisementByRubric(String rubric);
+
 	/**
-	 * delete advertisement  by id 
+	 * delete advertisement by id
+	 * 
 	 * @param id
 	 */
 	public void delateAdvertisementByID(int id);
-	 /* 
+
+	/*
 	 * @param login login user
-	 * @param rubric name  search rubric 
+	 * 
+	 * @param rubric name search rubric
+	 * 
 	 * @return
 	 */
-	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,String rubric);
+	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,
+			String rubric);
+
 	/**
-	 *  search list Advertisement  by name User name
-	 * @param nameUsery name user 
-	 * @return  list advertisement
+	 * search list Advertisement by name User name
+	 * 
+	 * @param nameUsery
+	 *            name user
+	 * @return list advertisement
 	 */
-	
+
 	public List<Advertisement> getAdvertisementByNameUser(String nameUser);
+
 	/**
-	 *  search list Advertisement  by name User name and  rubric
-	 * @param nameUsery name user 
-	 * @param  rubric  name rubric advertisement
-	 * @return  list advertisement
+	 * search list Advertisement by name User name and rubric
+	 * 
+	 * @param nameUsery
+	 *            name user
+	 * @param rubric
+	 *            name rubric advertisement
+	 * @return list advertisement
 	 */
-	
-	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser, String rubric);
+
+	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser,
+			String rubric);
 }

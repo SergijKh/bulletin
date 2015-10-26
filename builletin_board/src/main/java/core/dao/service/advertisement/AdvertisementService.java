@@ -4,19 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import core.dao.dao.advertisement.IAdvertisementDao;
-import core.dao.dao.login.ILogDao;
 import core.dao.model.advertisement.Advertisement;
 import core.dao.model.login.Login;
+
 @Service
 public class AdvertisementService implements IAdvertisementService {
 	@Autowired
-	   IAdvertisementDao daoAdvertis;
-	
+	IAdvertisementDao daoAdvertis;
+
 	@Override
 	public Advertisement getAdvertisementByID(int l) {
-		return  daoAdvertis.getAdvertisementByID(l);
+		return daoAdvertis.getAdvertisementByID(l);
 	}
 
 	@Override
@@ -42,7 +41,7 @@ public class AdvertisementService implements IAdvertisementService {
 
 	@Override
 	public List<Advertisement> getAdvertisementByIDLogin(Login login) {
-		return daoAdvertis.getAdvertisementByIDLogin( login);
+		return daoAdvertis.getAdvertisementByIDLogin(login);
 	}
 
 	@Override
@@ -58,13 +57,13 @@ public class AdvertisementService implements IAdvertisementService {
 	@Override
 	public List<Advertisement> getAdvertisementByIDLoginRubric(Login login,
 			String rubric) {
-		
+
 		return daoAdvertis.getAdvertisementByIDLoginRubric(login, rubric);
 	}
 
 	@Override
 	public List<Advertisement> getAdvertisementByNameUser(String nameUser) {
-		
+
 		return daoAdvertis.getAdvertisementByNameUser(nameUser);
 	}
 
@@ -72,9 +71,7 @@ public class AdvertisementService implements IAdvertisementService {
 	public List<Advertisement> getAdvertisementByNameUserRubic(String nameUser,
 			String rubric) {
 
-		return daoAdvertis.getAdvertisementByNameUserRubic(nameUser,rubric);
+		return daoAdvertis.getAdvertisementByNameUserRubic(nameUser, rubric);
 	}
-
-	
 
 }

@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 import core.dao.dao.login.ILogDao;
 import core.dao.model.login.Login;
 
-
 @Service
-public class LogService implements ILogService{
-  
+public class LogService implements ILogService {
 
 	@Autowired
 	ILogDao daoImpl;
+
 	@Override
 	public Login getLoginByIDLogin(int l) {
 		return daoImpl.getLoginByIDLogin(l);
@@ -37,30 +36,32 @@ public class LogService implements ILogService{
 
 	@Override
 	public Login updateLogin(Login login) {
-		return daoImpl.updateLogin(login) ;
+		return daoImpl.updateLogin(login);
 	}
-	 /**
+
+	/**
 	 * @return the daoImpl
 	 */
 	public ILogDao getDaoImpl() {
-			return daoImpl;
-		}
+		return daoImpl;
+	}
 
 	/**
-	 * @param daoImpl the daoImpl to set
+	 * @param daoImpl
+	 *            the daoImpl to set
 	 */
 	public void setDaoImpl(ILogDao daoImpl) {
-			this.daoImpl = daoImpl;
-		}
+		this.daoImpl = daoImpl;
+	}
 
 	@Override
 	public Login getByNameLogin(String nameLogin) {
 		return daoImpl.getByNameLogin(nameLogin);
-		}
+	}
 
 	@Override
 	public List<Login> getByNameUser(String nameUser) {
 		return daoImpl.getByNameUser(nameUser);
 	}
-	
+
 }

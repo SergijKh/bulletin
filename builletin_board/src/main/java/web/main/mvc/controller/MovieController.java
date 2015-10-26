@@ -63,7 +63,7 @@ public class MovieController {
 		signupInit.addBaseLogin(request, response);
 		HttpSession session = request.getSession(true);
 		String nameCon = (String) session.getAttribute("nameContent");
-		return "redirect:"+nameCon;
+		return "redirect:" + nameCon;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class MovieController {
 		signupInit.initialized(request, response);
 		HttpSession session = request.getSession(true);
 		String nameCon = (String) session.getAttribute("nameContent");
-		return "redirect:"+nameCon;
+		return "redirect:" + nameCon;
 	}
 
 	// redirect page list ads
@@ -135,32 +135,34 @@ public class MovieController {
 
 		return listAdver;
 	}
+
 	// update Advertisement
-		@RequestMapping(value = "/update", method = RequestMethod.POST )
-		public @ResponseBody String getUpdate(
-				Advertisement advartisement, HttpServletRequest request) {
-			HttpSession session = request.getSession(true);
-			Login login = (Login) session.getAttribute("login");
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody String getUpdate(Advertisement advartisement,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		Login login = (Login) session.getAttribute("login");
+		advartisement.setLogin(login);
+		advartisement.setModifiedDate(new Date().getTime());
+		impl.updateAdvertisement(advartisement);
+		return "ok";
+
+	}
+
+	// create Advertisement
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody String getcreate(Advertisement advartisement,
+			HttpServletRequest request) {
+		logger.info("////////////" + advartisement.getText());
+		logger.info("////////////" + advartisement.getRubric());
+		HttpSession session = request.getSession(true);
+		Login login = (Login) session.getAttribute("login");
+		if (login != null) {
 			advartisement.setLogin(login);
 			advartisement.setModifiedDate(new Date().getTime());
-			impl.updateAdvertisement(advartisement);
-			return  "ok";
-
+			impl.addAdvertisement(advartisement);
+			return "ok";
 		}
-		
-		// create Advertisement
-				@RequestMapping(value = "/create", method = RequestMethod.POST )
-				public @ResponseBody String getcreate(
-						Advertisement advartisement, HttpServletRequest request) {
-					logger.info("////////////"+advartisement.getText());
-					logger.info("////////////"+advartisement.getRubric());
-					HttpSession session = request.getSession(true);
-					Login login = (Login) session.getAttribute("login");
-					if(login != null){
-					advartisement.setLogin(login);
-					advartisement.setModifiedDate(new Date().getTime());
-					impl.addAdvertisement(advartisement);
-					return  "ok";}
-                     return "error";
-				}
+		return "error";
+	}
 }

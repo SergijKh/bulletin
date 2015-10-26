@@ -23,20 +23,20 @@
 <title>Insert title here</title>
 </head>
 <body>
- <c:set var="nameContent" scope="session" value="jsp/BulletinBoard.jsp" />
+	<c:set var="nameContent" scope="session" value="jsp/BulletinBoard.jsp" />
 	<div id='main'>
 		<div id='header'>
 			<div id='head'>
-			  <%@include file="Header.jsp" %>
+				<%@include file="Header.jsp"%>
 			</div>
 		</div>
 		<div id='body'>
 			<div id='body_left_menu'>
 				<div class="top_menu">
 					<ul>
-					   <c:if test="${sessionScope.login != null}" >
-						<li><a href="./listAds">список объявлений </a></li>
-						<li><a href="./editor">редактор объявлений</a></li>
+						<c:if test="${sessionScope.login != null}">
+							<li><a href="./listAds">список объявлений </a></li>
+							<li><a href="./editor">редактор объявлений</a></li>
 						</c:if>
 					</ul>
 				</div>
@@ -44,39 +44,35 @@
 			</div>
 			<div id='body_full'>
 				<div id='body_center'>
-                   <div id ='name_content'>
-                   </div>
+					<div id='name_content'></div>
 					<div id=search_content></div>
 					<div id='content'></div>
-					</div>
-					<div id='body_right_menu'>
-						<div id='enterSite'>
-							<c:if test="${sessionScope.login == null}">
-					        <div id='go' >
-								<a  href="#?w=350" rel="popup_name" class="poplight"> <c:out
+				</div>
+				<div id='body_right_menu'>
+					<div id='enterSite'>
+						<c:if test="${sessionScope.login == null}">
+							<div id='go'>
+								<a href="#?w=350" rel="popup_name" class="poplight"> <c:out
 										value="Войти" /></a>
-							</div>		
-						      
+							</div>
+
 						</c:if>
 
-							<c:if test="${sessionScope.login != null}">
-                                    <c:set var="name" scope="session" value="${sessionScope.login}" />
-                                     <div id ='enter_site_button'>
-							             <c:out value="${name.login}"/>
-						          	</div>				
-							</c:if>
-						</div>
-						<div id ='search'>
-						
-						</div>
+						<c:if test="${sessionScope.login != null}">
+							<c:set var="name" scope="session" value="${sessionScope.login}" />
+							<div id='enter_site_button'>
+								<c:out value="${name.login}" />
+							</div>
+						</c:if>
 					</div>
-					<div id="popup_name" class="popup_block">
-						<sing:singUp />
-					</div>
-					<div id='footer'>
-					</div>
+					<div id='search'></div>
 				</div>
+				<div id="popup_name" class="popup_block">
+					<sing:singUp />
+				</div>
+				<div id='footer'></div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

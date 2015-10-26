@@ -3,26 +3,16 @@ package core.dao.model.login;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-
-
-
-
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import core.dao.model.advertisement.Advertisement;
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -60,20 +50,19 @@ public class Login implements Serializable {
 	private String password;
 
 	/**
-	 * name user 
+	 * name user
 	 */
 	@Column(name = "NAME_USER", nullable = false)
-	private String nameUser ;
+	private String nameUser;
 	/**
-	 * set advertisement which have user 
+	 * set advertisement which have user
 	 */
-	 //@JsonIgnore
-	 @LazyCollection(LazyCollectionOption.FALSE)
-
+	// @JsonIgnore
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonBackReference("login")
-	 // @JsonManagedReference ("login")
-	@OneToMany(cascade = CascadeType.MERGE, /*fetch = FetchType.LAZY*/ mappedBy = "login")
-     private Set<Advertisement> advertis;
+	// @JsonManagedReference ("login")
+	@OneToMany(cascade = CascadeType.MERGE, /* fetch = FetchType.LAZY */mappedBy = "login")
+	private Set<Advertisement> advertis;
 
 	/**
 	 * empty constructor
@@ -83,10 +72,14 @@ public class Login implements Serializable {
 
 	/**
 	 * 
-	 * @param id id Login
-	 * @param login login user 
-	 * @param password password user  
-	 * @param nameUser name user 
+	 * @param id
+	 *            id Login
+	 * @param login
+	 *            login user
+	 * @param password
+	 *            password user
+	 * @param nameUser
+	 *            name user
 	 */
 	public Login(int id, String login, String password, String nameUser) {
 		super();
@@ -104,7 +97,7 @@ public class Login implements Serializable {
 	 * @param pasword
 	 *            password user
 	 */
-	public Login(String login, String password,String nameUser) {
+	public Login(String login, String password, String nameUser) {
 		super();
 		this.login = login;
 		this.password = password;
@@ -148,8 +141,6 @@ public class Login implements Serializable {
 		return password;
 	}
 
-	
-
 	/**
 	 * @param pasword
 	 *            the pasword to set
@@ -165,14 +156,14 @@ public class Login implements Serializable {
 	public Set<Advertisement> getAdvertis() {
 		return advertis;
 	}
-  
+
 	/**
-	 * @param advertis the advertis to set
+	 * @param advertis
+	 *            the advertis to set
 	 */
 	public void setAdvertis(Set<Advertisement> advertis) {
 		this.advertis = advertis;
 	}
-	
 
 	/**
 	 * @return the nameUser
@@ -182,13 +173,16 @@ public class Login implements Serializable {
 	}
 
 	/**
-	 * @param nameUser the nameUser to set
+	 * @param nameUser
+	 *            the nameUser to set
 	 */
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -204,7 +198,9 @@ public class Login implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -236,5 +232,4 @@ public class Login implements Serializable {
 		return true;
 	}
 
-	
 }
