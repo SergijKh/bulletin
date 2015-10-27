@@ -45,7 +45,7 @@ public class SignUp extends TagSupport {
 					+ "'  method='post'>"
 					+ "<input type = 'hidden' name='initlogin' value= 'inituser'/>"
 					+ " логин </br><input type='text' name='login'> </br><p></p></br>"
-					+ " пароль</br> <input type='text' name='password'> </br><p></p></br>"
+					+ " пароль</br> <input type='password' name='password'> </br><p></p></br>"
 					+ "<input type='submit' value = 'Войти на сайт '></form></td> </tr><div>");
 
 		} catch (IOException ioException) {

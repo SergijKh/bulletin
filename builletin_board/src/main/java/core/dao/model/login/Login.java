@@ -8,11 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import core.dao.model.advertisement.Advertisement;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -40,11 +46,15 @@ public class Login implements Serializable {
 	/**
 	 * login user
 	 */
+	@NotNull
+	@Size(min= 2, max=16)
 	@Column(name = "LOGIN", nullable = false)
 	private String login;
 	/**
 	 * password user
 	 */
+	@NotNull
+	@Size(min= 5, max=16)
 	@JsonIgnore
 	@Column(name = "PASSword", nullable = false)
 	private String password;
@@ -53,14 +63,15 @@ public class Login implements Serializable {
 	 * name user
 	 */
 	@Column(name = "NAME_USER", nullable = false)
+	@NotNull
+	@Size(min= 2, max=16)
 	private String nameUser;
 	/**
 	 * set advertisement which have user
 	 */
-	// @JsonIgnore
+
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonBackReference("login")
-	// @JsonManagedReference ("login")
 	@OneToMany(cascade = CascadeType.MERGE, /* fetch = FetchType.LAZY */mappedBy = "login")
 	private Set<Advertisement> advertis;
 
@@ -102,6 +113,15 @@ public class Login implements Serializable {
 		this.login = login;
 		this.password = password;
 		this.nameUser = nameUser;
+	}
+
+	/**
+	 * @param login
+	 * @param password
+	 */
+	public Login(String login, String password) {
+		this.login = login;
+		this.password = password;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package core.dao.model.advertisement;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import core.dao.model.login.Login;
 
 /**
@@ -46,22 +51,23 @@ public class Advertisement implements Serializable {
 	/**
 	 * title advertisement
 	 */
+	@NotNull
+	@Size(min= 10, max=30)
 	@Column(name = "TITLE", nullable = false)
 	private String title;
 	/**
 	 * text advertisement
 	 */
+	@Size(min= 20, max=400)
 	@Column(name = "TEXT")
 	private String text;
 
 	/**
 	 * Login
 	 */
-	// @XmlTransient
+
 	@JsonManagedReference("login")
-	// @JsonBackReference("login")
 	@ManyToOne
-	// (fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_LOGIN", nullable = false)
 	private Login login;
 

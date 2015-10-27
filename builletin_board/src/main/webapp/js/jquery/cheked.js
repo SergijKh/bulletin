@@ -14,9 +14,7 @@
 				cache : false,
 				url : "./delete/" + $(deleteLink).val(),
 				type : "DELETE",
-
 				success : function(result) {
-
 					$(".id" + $(deleteLink).val()).remove();
 
 					$("#body_center").html(respContent);

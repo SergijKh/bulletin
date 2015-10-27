@@ -30,13 +30,17 @@ public class SignUpInitController {
 	 * @param httpRequest
 	 *            HttpServletRequest
 	 */
-	public void addBaseLogin(HttpServletRequest httpRequest,
+	public void addBaseLogin( Login loginN, HttpServletRequest httpRequest,
 			HttpServletResponse response) {
 		HttpSession session = (((HttpServletRequest) httpRequest)
 				.getSession(true));
-		String login = (String) httpRequest.getParameter("login");
+		
+		/*String login = (String) httpRequest.getParameter("login");
 		String password = (String) httpRequest.getParameter("password");
-		String nameUSer = (String) httpRequest.getParameter("nameUser");
+		String nameUSer = (String) httpRequest.getParameter("nameUser");*/
+		String login = loginN.getLogin();
+		String password = loginN.getPassword();
+		String nameUSer = loginN.getNameUser();
 		if (!((login.equals("")) && (!(password.equals("")) && (!(nameUSer
 				.equals("")))))) {
 			Login log = new Login(login, password, nameUSer);
@@ -64,10 +68,12 @@ public class SignUpInitController {
 	 * @param response
 	 *            HttpServletResponse
 	 */
-	public void initialized(HttpServletRequest httpRequest,
+	public void initialized(Login loginN, HttpServletRequest httpRequest,
 			HttpServletResponse response) {
-		String login = (String) httpRequest.getParameter("login");
-		String password = (String) httpRequest.getParameter("password");
+		//String login = (String) httpRequest.getParameter("login");
+		//String password = (String) httpRequest.getParameter("password");
+		String login = loginN.getLogin();
+		String password = loginN.getPassword() ;
 		HttpSession session = (((HttpServletRequest) httpRequest)
 				.getSession(true));
 		Login log = null;

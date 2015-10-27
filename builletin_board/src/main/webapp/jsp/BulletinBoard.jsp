@@ -23,7 +23,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="nameContent" scope="session" value="jsp/BulletinBoard.jsp" />
+	<c:set var="nameContent" scope="session" value="BulletinBoard" />
 	<div id='main'>
 		<div id='header'>
 			<div id='head'>

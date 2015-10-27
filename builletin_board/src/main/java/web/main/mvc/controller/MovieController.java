@@ -9,22 +9,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
+import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import core.com.board.initialised.SignUpInitController;
 import core.com.board.requestparam.model.RequestParamSerch;
@@ -58,12 +53,17 @@ public class MovieController {
 	 * @return
 	 */
 	@RequestMapping(value = "/signlogin", method = RequestMethod.POST)
-	public String getSingUp(HttpServletRequest request,
-			HttpServletResponse response) {
-		signupInit.addBaseLogin(request, response);
+	public String getSingUp(@Valid Login login, HttpServletRequest request,
+			HttpServletResponse response, BindingResult bindingResult) {
 		HttpSession session = request.getSession(true);
 		String nameCon = (String) session.getAttribute("nameContent");
-		return "redirect:" + nameCon;
+		if (bindingResult.hasErrors()){
+			return  nameCon;
+		}
+		else{
+		signupInit.addBaseLogin( login, request, response);
+		return   nameCon;
+		}
 	}
 
 	/**
@@ -74,12 +74,13 @@ public class MovieController {
 	 * @return
 	 */
 	@RequestMapping(value = "/initlogin", method = RequestMethod.POST)
-	public String getSInitLogin(HttpServletRequest request,
+	public String getSInitLogin( Login login, HttpServletRequest request,
 			HttpServletResponse response) {
-		signupInit.initialized(request, response);
 		HttpSession session = request.getSession(true);
 		String nameCon = (String) session.getAttribute("nameContent");
-		return "redirect:" + nameCon;
+		 signupInit.initialized(login,request, response);
+		 return  nameCon;
+	
 	}
 
 	// redirect page list ads
@@ -107,17 +108,18 @@ public class MovieController {
 		return "ok";
 	}
 
-	// redirect jsp page Editor.jsp
+	//   Editor.jsp add list user  advertisement  
 	@RequestMapping(value = "/editor", method = RequestMethod.GET)
-	public String getEditor(HttpServletRequest request, Model model) {
+	public String getEditor(HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		List<Advertisement> listAdver = null;
 		if (login != null) {
 			listAdver = impl.getAdvertisementByIDLogin(login);
+			session.setAttribute("myListAdvertisment", listAdver);
+			return "Editor";
 		}
-		session.setAttribute("myListAdvertisment", listAdver);
-		return "Editor";
+		 return "BulletinBoard";
 	}
 
 	// return all Advertisement user
@@ -138,23 +140,27 @@ public class MovieController {
 
 	// update Advertisement
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody String getUpdate(Advertisement advartisement,
-			HttpServletRequest request) {
+	public @ResponseBody String getUpdate(@Valid Advertisement advartisement,
+			HttpServletRequest request,BindingResult bindingResult) {
+		if (bindingResult.hasErrors()){
+			return "notCorrect";
+		}else{
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		advartisement.setLogin(login);
 		advartisement.setModifiedDate(new Date().getTime());
 		impl.updateAdvertisement(advartisement);
 		return "ok";
-
+		}
 	}
 
 	// create Advertisement
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody String getcreate(Advertisement advartisement,
-			HttpServletRequest request) {
-		logger.info("////////////" + advartisement.getText());
-		logger.info("////////////" + advartisement.getRubric());
+	public @ResponseBody String getcreate(@Valid Advertisement advartisement,
+			HttpServletRequest request,BindingResult bindingResult) {
+		if (bindingResult.hasErrors()){
+			return "notCorrect";
+		}
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		if (login != null) {

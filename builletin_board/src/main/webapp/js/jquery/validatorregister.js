@@ -18,20 +18,24 @@ $(document).ready(function() {
 			rules: {
 				login: {
 					required: true,
-					minlength: 2
+					minlength: 2,
+					maxlength: 16
 				},
 				password: {
 					required: true,
-					minlength: 5
+					minlength: 5,
+					maxlength:16
 				},
 				secondPassword: {
 					required: true,
 					minlength: 5,
+					maxlength:16,
 					equalTo:"#password"
 				},
-				email: {
+				nameUser: {
 					required: true,
-					email: true
+					minlength: 5,
+					maxlength:16
 				},
 				
 				
@@ -55,7 +59,8 @@ $(document).ready(function() {
 				},
 				email: {
 					required: "Это поле обязательно для заполнения",
-					email: "некорректный E-mail"
+					 minlength: "Пароль должен быть минимум 5 символа",
+		             maxlength: "Пароль должен быть максимум 16 символов",
 				}
 			}
 		});
