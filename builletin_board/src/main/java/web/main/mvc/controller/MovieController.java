@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import core.com.board.initialised.SignUpInitController;
 import core.com.board.requestparam.model.RequestParamSerch;
@@ -44,7 +45,12 @@ public class MovieController {
 	IAdvertisementService impl;
 	@Autowired
 	ISearching searchServise;
-
+	
+	 public static final String PAGE_INDEX = "index";
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
 	/**
 	 * registration user on site add Login object in base table login
 	 * 
@@ -83,9 +89,9 @@ public class MovieController {
 	
 	}
 
-	// redirect page list ads
+	// redirect page list advertisement
 	@RequestMapping(value = "/listAds", method = RequestMethod.GET)
-	public String getService(HttpServletRequest request, Model model) {
+	public String getListAdvertisementService(HttpServletRequest request, Model model) {
 		List<Advertisement> listAdver = impl.getAdvertisement();
 		HttpSession session = request.getSession(true);
 		session.setAttribute("listAdver", listAdver);
@@ -94,9 +100,10 @@ public class MovieController {
 
 	// search Advertisement by name user , rubric
 	@RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json ; charset=UTF-8")
-	public @ResponseBody List<Advertisement> getPostBooking(
+	public @ResponseBody List<Advertisement> getListSerchAdvertisementByNameRubric(
 			RequestParamSerch requstParam, HttpServletRequest request) {
-		return searchServise.serchCreteriaNameUserRubric(request, requstParam,
+		   Login login = (Login) request.getSession(true).getAttribute("login");
+		return searchServise.serchCreteriaNameUserRubric(login, requstParam,
 				impl);
 
 	}
@@ -110,16 +117,16 @@ public class MovieController {
 
 	//   Editor.jsp add list user  advertisement  
 	@RequestMapping(value = "/editor", method = RequestMethod.GET)
-	public String getEditor(HttpServletRequest request) {
+	public String getEditor(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		List<Advertisement> listAdver = null;
 		if (login != null) {
 			listAdver = impl.getAdvertisementByIDLogin(login);
-			session.setAttribute("myListAdvertisment", listAdver);
-			return "Editor";
+			model.addAttribute("myListAdvertisment", listAdver);
+			
 		}
-		 return "BulletinBoard";
+		return "Editor";
 	}
 
 	// return all Advertisement user
@@ -130,6 +137,8 @@ public class MovieController {
 		List<Advertisement> listAdver = new ArrayList<Advertisement>();
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
+		 logger.info("test myList");
+		 logger.info( login==null);
 		if (login != null) {
 			listAdver = impl.getAdvertisementByIDLogin(login);
 			session.setAttribute("myListAdvertisment", listAdver);

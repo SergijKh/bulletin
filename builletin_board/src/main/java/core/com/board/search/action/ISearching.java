@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import core.com.board.requestparam.model.RequestParamSerch;
 import core.dao.model.advertisement.Advertisement;
+import core.dao.model.login.Login;
 import core.dao.service.advertisement.IAdvertisementService;
 
 //search by the different criteria 
@@ -20,7 +21,7 @@ public interface ISearching {
 	 * @return
 	 */
 	public List<Advertisement> serchCreteriaNameUserRubric(
-			HttpServletRequest request, RequestParamSerch serch,
+			Login login, RequestParamSerch serch,
 			IAdvertisementService service);
 
 }
